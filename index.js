@@ -16,6 +16,10 @@ app.use(
 	})
 );
 
+app.get("/", (req, res) => {
+	res.send("Testing the server!");
+});
+
 app.use(express.json());
 
 app.use("/user", require("./routes/user"));
