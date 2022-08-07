@@ -6,7 +6,7 @@ const User = require("../db/models/user");
 const auth = require("../middleware/auth");
 
 // Create a new User
-router.post("/create", async (req, res) => {
+router.post("/create", auth.superAdminAuth, async (req, res) => {
 	try {
 		const user = new User(req.body);
 		await user.save();
