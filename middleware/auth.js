@@ -1,11 +1,13 @@
 const jwt = require("jsonwebtoken");
 const User = require("../db/models/user");
 
+const secret = process.env.API_KEY_SECRET;
+
 const auth = {
 	async superAdminAuth(req, res, next) {
 		try {
 			const token = req.header("Authorization").replace("Bearer ", "");
-			const decoded = jwt.verify(token, "dummyjwtsecret");
+			const decoded = jwt.verify(token, secret);
 			const user = await User.findOne({
 				_id: decoded._id,
 				"tokens.token": token,
@@ -35,7 +37,7 @@ const auth = {
 	async superAdminAndUserAuth(req, res, next) {
 		try {
 			const token = req.header("Authorization").replace("Bearer ", "");
-			const decoded = jwt.verify(token, "dummyjwtsecret");
+			const decoded = jwt.verify(token, secret);
 			const user = await User.findOne({
 				_id: decoded._id,
 				"tokens.token": token,
