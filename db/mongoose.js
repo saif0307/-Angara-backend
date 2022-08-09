@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
-// const databaseName = "angara-portal-api";
-// const URL = `mongodb+srv://m_saif1999:LX3PEcapIv1Gt6Du@cluster1.s10juvx.mongodb.net/angara-portal-api?retryWrites=true&w=majority`;
+
 const URL = process.env.MONGODB_HOST;
 
 mongoose.connect(
